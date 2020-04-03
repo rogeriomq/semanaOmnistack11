@@ -55,15 +55,15 @@ const resolvers = {
     }
   },
   Mutation: {
-    createIncident: async (_, args) => {
-      const { title, description, value, ong_id } = args.incidentInput
-      console.log(args.incidentInput)
+    createIncident: async (_, { incidentInput }) => {
+      const { title, description, value, ong_id } = incidentInput
+  
       const ong = await connection('ongs')
         .where({
           id: ong_id
         })
         .first()
-      console.log('ong:', ong)
+  
       const [id] = await connection('incidents').insert({
         title,
         description,
@@ -71,8 +71,7 @@ const resolvers = {
         ong_id
       })
 
-      // console.log(id)
-
+    
       return {
         id,
         title,

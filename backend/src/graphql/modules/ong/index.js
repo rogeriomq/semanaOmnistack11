@@ -20,6 +20,7 @@ const typeDefs = gql`
   extend type Query {
     # login: String
     ongs: [Ong]
+    session(id: String!): Ong 
     # logout: String
     # addIncident: String
     # removeIncident: String
@@ -58,8 +59,12 @@ const resolvers = {
   },
   Query: {
     ongs: async (parent, args, context, info) => {
-      const ongs = connection('ongs').select('*')
+      const ongs = await connection('ongs').select('*')
       return ongs
+    },
+    session: async (_, { id }) => {
+      const ong = await connection('ongs').where({id}).first()
+      return ong 
     }
   },
   Mutation: {
