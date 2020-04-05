@@ -17,3 +17,9 @@ export const MutationCreateIncident = result => gql`
     }
   }
 `
+
+export const MutationDeleteIncident = () => gql`
+  mutation DeleteIncident($id: ID!, $ong_id: String!) {
+    deleteIncident(id: $id, ong_id: $ong_id)
+  }
+`

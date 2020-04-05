@@ -4,18 +4,23 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec sucrase-node src/index.js"
+    "start": "cross-env NODE_ENV=development nodemon --exec sucrase-node src/index.js",
+    "test": "cross-env NODE_ENV=test jest"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.9.0",
+    "babel-jest": "^25.2.6",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.2.7",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.1",
     "sucrase": "^3.12.1"
   },
   "dependencies": {
     "apollo-server-express": "^2.11.0",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
     "knex": "^0.20.13",

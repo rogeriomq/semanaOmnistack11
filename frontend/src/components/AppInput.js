@@ -7,7 +7,7 @@ export default function AppInput({
     placeholder = '',
     type = 'text',
     value = '',
-    setValue = () => {},
+    onChange = () => {},
     // textarea only
     isTextArea = false,
     rows = 5,
@@ -31,7 +31,7 @@ export default function AppInput({
         rows={rows}
         resize={resize}
         value={value}
-        onChange={setValue}     
+        onChange={onChange}     
       ></textarea>
     )
 
@@ -43,7 +43,7 @@ export default function AppInput({
       placeholder={placeholder}
       // defaultValue={value}
       value={value}
-      onChange={setValue}
+      onChange={onChange}
     />
   );
 }

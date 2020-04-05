@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express'
-import crypto from 'crypto'
 import connection from '../../../database/connection'
+import generateUniqueId from '../../../utils/generateUniqueId'
 
 const typeDefs = gql`
   "Type representing the table ongs in database."
@@ -72,7 +72,7 @@ const resolvers = {
       const { name, email, whatsapp, city, uf } = args.ongInput
 
       const ong = {
-        id: crypto.randomBytes(4).toString('HEX'),
+        id: generateUniqueId(),
         name,
         email,
         whatsapp,

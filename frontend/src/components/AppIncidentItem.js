@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 
-export default function AppIncidentItem({ item }) {
+export default function AppIncidentItem({ item, onDeleteIncident = (id) => {} }) {
   const p_class = "text-gray-600 text-base leading-relaxed"
   return (
     <li
@@ -24,7 +24,12 @@ export default function AppIncidentItem({ item }) {
       </p>
       
       <button type="button">
-        <FiTrash2 className="absolute right-0 top-0 mt-6 mr-6 hover:opacity-50" />
+        <FiTrash2 className="absolute right-0 top-0 mt-6 mr-6 hover:opacity-50"
+        onClick={(e) => {
+          e.preventDefault()
+          onDeleteIncident(item.id)
+        }}
+      />
       </button>
     </li>
   );

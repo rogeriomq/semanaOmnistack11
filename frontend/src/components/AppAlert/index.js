@@ -7,7 +7,8 @@ export default function AppAlert({
   title = '',
   message = '',
   time = undefined,
-  position = 'top-0 right-0'
+  position = 'top-0 right-0',
+  onClose = () => {}
 }) {
   const typeColor = {
     success: 'teal',
@@ -34,13 +35,19 @@ export default function AppAlert({
     }
   }, [hiddenAlert, time]);
 
+  // Trigger when hiddenAlert is only true
+  useEffect(() => {
+    if(hiddenAlert)
+      onClose();
+  }, [hiddenAlert, onClose])
+
   return (
     <div
       className={`${hiddenAlert ? 'hidden' : ''} bg-${
         typeColor[type]
       }-100 sm:max-w-md md:max-w-lg lg:max-w-xl  border-t-4 border-${typeColor[type]}-500 rounded-b text-${
         typeColor[type]
-      }-900 px-4 py-3 m-3 shadow-md absolute top-auto bottom-0 left-0`}
+      }-900 px-4 py-3 m-3 shadow-md absolute ${positions[position]}`}
       role="alert"
     >
       <div>
